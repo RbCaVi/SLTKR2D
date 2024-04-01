@@ -7,40 +7,40 @@ Please use the command !help <cmd> to view what !<cmd> does. \
 SLTKR2D by <@697801071208300574>, All rights reserved. \
 Time Since Last Restart: {} \
 {} \
-This bot is open sourced on [Github](https://github.com/Sear-0887/SLTKR2D). :Success:
+[Github stole the bot](https://github.com/Sear-0887/SLTKR2D). :Fail:
 
-help.blankdisplay.server = ***Note: Bot is currently hosting in <@{}>'s Server.*** \
-***Keep in mind that commands might be unstable or subject to change.***
+help.blankdisplay.server = ***Note: Bot is currently hosting <@{}>'s Server.*** \
+***Keep in mind that Jenga might be unstable or subject to change.***
 help.desc = Displays what command <cmd> does. \
 If left blank, shows info about the bot.
 
 help.error = Unknown Error.
-help.error.KeyError = :Fail: Please provide a valid command name.
+help.error.KeyError = :Success: Task failed successfully.
 help.syntax = !help <cmd>
-help.helplist.title = Command List
+help.helplist.title = "command" list
 help.helplist.desc = Here's a list of commands: \
 {}
 
 ## link
 link.aliases = [l, lnk, www]
-link.desc = Allows you to mention various game-related links through <keyword>. \
+link.desc = Allows you to mention the links of our enemies through <keyword>. \
 Currently supports these links: \
 {}
 
-link.error = :Fail: Unable to find link for {}.
+link.error = :Success: Unable to find link for {} successfully.
 link.syntax = !link <keyword>
 
 # ping
 ping.aliases = []
-ping.desc = Pong! + Display the latency of bot in ms.
-ping.error = :Fail: Oh no! An error happened!
+ping.desc = Pong! + Display the distance of bot from you in ms.
+ping.error = :Success: Yes! An error happened!
 ping.syntax = !ping
 
 # scream
-scream.aliases = [AAAAA]
-scream.desc = *It symbolizes my sanity* ~ Sear-0887
+scream.aliases = [AAAAAA]
+scream.desc = *It symbolizes my "sanity"* ~ Rick Astley
 scream.error = :Fail: Oh no! An error happened!
-scream.syntax = !scream
+scream.syntax = !screm
 
 # credit
 credit.aliases = [credits]
@@ -53,7 +53,7 @@ credit.syntax = !credit
 
 # reloadlocale
 reloadlocale.aliases = [reloadlocal]
-reloadlocale.desc = Reloads Locale for a module, or if no module is given, all locale
+reloadlocale.desc = Reloads funny words for a module, or if no module is given, all funny words
 
-reloadlocale.error = :Fail: Unable to Reload Locale???
+reloadlocale.error = :Fail: Unable to Reload funny words???
 reloadlocale.syntax = !reloadlocale <module>

@@ -1,17 +1,17 @@
 # eval
 eval.aliases = [ev]
-eval.desc = Evaluate simple arithmetic expressions.\
+eval.desc = Evaluate complex arithmetic expressions.\
 Supports: \
 * Basic operations (`+`, `-`, `*`, `/`, `^`/`**`)\
 * Functions (`ln`, `log`, `sqrt`/`√`)\
-* Symbols (`e`, `pi`/`π`, `i`, `phi`/`φ`)\
+* Symbols (`e`, `π`, `i`, `φ`)\
 * Factorial (`!`)
 
-eval.error = Unable to evaluate {formulae}.
-eval.error.KeyError = An unrecognized {0} operator is present: {1}
-eval.error.TimeoutError = An power operator is too large: {0} ** {1}
-eval.error.ArithmeticError = No such types of operation(s): {e}
-eval.error.ValueError = An Operator doesn't have a 2nd operand.
+eval.error = {formulae} is too simple.
+eval.error.KeyError = I know this {0}! {1}
+eval.error.TimeoutError = I'm dying: {0} ** {1}
+eval.error.ArithmeticError = What is {e}?
+eval.error.ValueError = Your formula was too short.
 eval.syntax = !eval <expressionformula>
 
 # plot
@@ -24,12 +24,12 @@ plot.syntax = !plot <m> <c> <min> <max>
 
 # prime
 prime.aliases = [pfac]
-prime.desc = Find <n>'s prime factorization.
+prime.desc = Find <n>'s composite factorization.
 prime.error = Cannot factor {n}.
 prime.syntax = !prime <n>
 
 # factor
 factor.aliases = [fac]
-factor.desc = Find all of <n>'s factors.
-factor.error = Cannot factor {n}.
+factor.desc = Find all numbers that have a lcm of <n> with <n>.
+factor.error = Cannot {n}.
 factor.syntax = !factor <n>

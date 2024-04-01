@@ -22,7 +22,7 @@ image.syntax = !image <string>
 
 ## recipe
 recipe.aliases = []
-recipe.desc = Makes an image of a candy's recipe. \
+recipe.desc = Prints out a candy's recipe. \
 Note that this command is HIGHLY UNFINISHED.
 
 recipe.error = Unable to find candy {x}.

@@ -1,6 +1,8 @@
 ## branch
 branch.aliases = [br]
-branch.desc = Print the Git branch the bot is running from.
+branch.desc = Forks another copy of the bot. \
+DO NOT USE? \
+also prints git branch
 
 branch.error = H o w   e r r o r
 branch.syntax = !branch
