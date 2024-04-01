@@ -1,6 +1,6 @@
 ## viewcog
 viewcog.aliases = [cg, cgv, cog, cogs]
-viewcog.desc = View all cogs. \
+viewcog.desc = Hides data. \
 Admin-Only Command.
 
 viewcog.error = Unable to reach all cogs.
@@ -8,7 +8,7 @@ viewcog.syntax = !viewcog
 
 ## reloadcog
 reloadcog.aliases = [cgr, cogreload]
-reloadcog.desc = Reloads the cog specified. \
+reloadcog.desc = E. \
 Admin-Only Command.
 
 reloadcog.error = Unable to reach all cogs.
@@ -16,7 +16,7 @@ reloadcog.syntax = !reloadcog
 
 ## loadcog
 loadcog.aliases = [cgl, cogload]
-loadcog.desc = Loads the cog specified.\
+loadcog.desc = Grafts some code onto the main program.\
 Admin-Only Command.
 
 loadcog.error = Unable to reach all cogs.
@@ -24,7 +24,7 @@ loadcog.syntax = !loadcog
 
 ## unloadcog
 unloadcog.aliases = [cgu, cogunload]
-unloadcog.desc = Unloads the cog specified. \
+unloadcog.desc = Deletes the cog specified. \
 Admin-Only Command.
 
 unloadcog.error = Unable to reach all cogs.
@@ -32,23 +32,23 @@ unloadcog.syntax = !unloadcog
 
 ## deletelog
 deletelog.aliases = [delog, lgd, lgdelete, dellog]
-deletelog.desc = Clear Log files. \
+deletelog.desc = Move Log files to your computer. \
 Admin-Only Command.
 
-deletelog.error = Unable to delete all logs.
+deletelog.error = Unable to "move" all logs.
 deletelog.syntax = !deletelog
 
 ## deleteerr
 deleteerr.aliases = [deerr, delerr, errd, errdelete]
-deleteerr.desc = Clear Error files. \
+deleteerr.desc = Move Error files to your computer. \
 Admin-Only Command.
 
-deleteerr.error = Unable to delete All Error files.
+deleteerr.error = Unable to "move" All Error files.
 deleteerr.syntax = !deleteerr
 
 ## viewerr
 viewerr.aliases = [verr, viewerror, viewerrors]
-viewerr.desc = View <n> Error files produced by <user>. \
+viewerr.desc = View <n> Success reports produced by <user>. \
 <n> defaults to 1, <user> defaults to yourself.
 
 viewerr.error = Unable to view.

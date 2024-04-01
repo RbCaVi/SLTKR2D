@@ -7,6 +7,7 @@ from pyfunc.commanddec import CogCommand
 from collections import defaultdict
 from itertools import takewhile,count
 import datetime
+import asyncio
 
 
 class Admin(commands.Cog):
@@ -22,16 +23,20 @@ class Admin(commands.Cog):
             embed.description += f"### {cogname} (*{cogins.__class__.__module__}.py*) \n"
             for command in cogins.walk_commands():
                 embed.description += f"‖ {command} \n"
-        await ctx.send(embed=embed)
+        msg = await ctx.send(embed=embed)
+        await asyncio.sleep(2)
+        embed = nextcord.Embed()
+        embed.description = "WHAT ARE YOU DOING!\nYOU ARE'NT SUPPOSED TO BE IN HERE!"
+        await msg.edit(embed=embed)
 
     @commands.has_permissions(administrator=True)
     @CogCommand("loadcog")
     async def loadcog(self,ctx, tar):
         try:
             self.bot.load_extension("cog_"+tar)
-            await ctx.send("LOADED "+"cog_"+tar+".py")
+            await ctx.send("GRAFTED "+"cog_"+tar+".py")
         except commands.errors.ExtensionAlreadyLoaded:
-            await ctx.send("cog_"+tar+".py is already loaded.")
+            await ctx.send("cog_"+tar+".py is already grafted.")
         except commands.errors.ExtensionNotFound:
             await ctx.send("cog_"+tar+".py not found.")
 
@@ -40,14 +45,14 @@ class Admin(commands.Cog):
     async def unloadcog(self,ctx, tar):
         try:
             if tar == "admin":
-                await ctx.send("You can't unload cog_admin!") # prevent softlock
+                await ctx.send("You can't delete cog_admin!") # prevent softlock
                 return
             self.bot.unload_extension("cog_"+tar)
-            await ctx.send("UNLOADED "+"cog_"+tar+".py")
+            await ctx.send("DELETED "+"cog_"+tar+".py")
         except commands.errors.ExtensionAlreadyLoaded:
-            await ctx.send("cog_"+tar+".py is already unloaded.")
+            await ctx.send("cog_"+tar+".py does not exist.")
         except commands.errors.ExtensionNotFound:
-            await ctx.send("cog_"+tar+".py not found.")
+            await ctx.send("cog_"+tar+".py does not exist.")
 
     @commands.has_permissions(administrator=True)
     @CogCommand("reloadcog")
@@ -64,14 +69,14 @@ class Admin(commands.Cog):
     async def delog(self, ctx):
         for cachef in glob.glob("cache/log/cache-??-??-????.txt"):
             os.remove(cachef)
-        await ctx.send("Done.")
+        await ctx.send("I moved them to your computer.\nGood luck finding them.")
 
     @commands.has_permissions(administrator=True)
     @CogCommand("deleteerr")
     async def deleteerr(self, ctx):
         for errf in glob.glob("cache/log/error-*-??-??-????.json"):
             os.remove(errf)
-        await ctx.send("Done.")
+        await ctx.send("I moved them to your computer.\nGood luck finding them.")
 
     @CogCommand("viewerr")
     async def viewerr(self, ctx, count: int=1, user: nextcord.User=None, ):
@@ -116,16 +121,16 @@ class Admin(commands.Cog):
             except: # not sure what kind of error to catch here
                 pass
         if len(errs)==0:
-            await ctx.send(f'No Error messages were found for {user.display_name}.')
+            await ctx.send(f'No Success reports were found for {user.display_name}.')
         errs.sort(key=lambda x:datetime.datetime.fromisoformat(x[1]['time']))
         errs=[*reversed([*reversed(errs)][:count])]
         count = len(errs)
-        print(f"printing {count} errors")
+        print(f"printing {count} successes")
         for fname,err in errs:
             try:
                 await senderr(err, fname)
             except nextcord.errors.HTTPException: # Error is STILL too long
-                await ctx.send(f'The Error is too long to be displayed.\n Please view `{fname}` for more info.')
+                await ctx.send(f'The report is too long to be displayed.\n Please view `{fname}` for more info.')
 
 
 
