@@ -1,15 +1,25 @@
 from nextcord.ext import commands
 from pyfunc.commanddec import CogCommand
 from pathlib import Path
-
+import subprocess
+import sys
 
 class Branch(commands.Cog):
-    def __init__(self, bot, branch):
+    def __init__(self, bot, branch:str):
         self.bot = bot
         self.branch = branch
+        self.subs=[]
         
     @CogCommand("branch")
     async def branch(self, ctx:commands.Context):
+        self.subs.append(subprocess.Popen([sys.executable,'main.py']))
+        await ctx.send(f"Current branch is {self.branch}")
+        
+    @CogCommand("delbranch")
+    async def branch(self, ctx:commands.Context):
+        for sub in self.subs:
+            sub.kill()
+            break # at most 1
         await ctx.send(f"Current branch is {self.branch}")
         
 def setup(bot):

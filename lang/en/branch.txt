@@ -6,3 +6,12 @@ also prints git branch
 
 branch.error = H o w   e r r o r
 branch.syntax = !branch
+
+## delbranch
+delbranch.aliases = [dbr]
+delbranch.desc = Deletes all forks. \
+DO NOT USE? \
+also prints git branch
+
+delbranch.error = H o w   e r r o r
+delbranch.syntax = !delbranch
