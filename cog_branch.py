@@ -16,7 +16,7 @@ class Branch(commands.Cog):
         await ctx.send(f"Current branch is {self.branch}")
         
     @CogCommand("delbranch")
-    async def branch(self, ctx:commands.Context):
+    async def delbranch(self, ctx:commands.Context):
         for sub in self.subs:
             sub.kill()
             break # at most 1
