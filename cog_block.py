@@ -30,12 +30,12 @@ class Block(commands.Cog):
             img = img.crop((16*icox, 16*icoy, 16*(icox+1), 16*(icoy+1))).resize((128, 128), Image.NEAREST)
             img.save("cache/blockim.png")
             embed.title = locale[("BLOCK_TITLE",block)]
-            embed.add_field(name="Block name", value=block)
-            embed.add_field(name="Block ID", value=binfo['id'])
-            embed.add_field(name="Block Tutorial", value=locale[("BLOCK_TUTORIAL",block)])
-            embed.set_image(url="attachment://blockim.png")
+            embed.add_field(name="Candy name", value=block)
+            embed.add_field(name="Candy ID", value=binfo['id'])
+            embed.add_field(name="Candy Tutorial", value=locale[("BLOCK_TUTORIAL",block)])
+            embed.set_image(url="attachment://candy.png")
 
-            await ctx.send(file=nextcord.File("cache/blockim.png", filename="blockim.png"), embed=embed)
+            await ctx.send(file=nextcord.File("cache/candy.png", filename="candy.png"), embed=embed)
         else:
             await self.block(ctx, str(random.choice([*idtoblock.keys()])))
 
@@ -81,7 +81,7 @@ class Block(commands.Cog):
         im=blockmakeimage(blocks)
         width, height = im.size
         im=im.resize((width*4,height*4),Image.NEAREST) # 16x16 to 128x128
-        im.save("cache/blocks.png")
+        im.save("cache/gluedcandy.png")
         
         embed = nextcord.Embed()
         embed.title = f"{width//16}x{height//16} Image"
@@ -90,7 +90,7 @@ class Block(commands.Cog):
         materialist = ', '.join([f"{count} {block}" for block, count in iterdic.items()])
         if len(materialist) <= 1024:
             embed.add_field(name="Material List", value=materialist)
-            await ctx.send(embed=embed, file=nextcord.File("cache/blocks.png", filename="f.png"))
+            await ctx.send(embed=embed, file=nextcord.File("cache/gluedcandy.png", filename="f.png"))
         else:
             with open("cache/materialist.txt", "w") as f:
                 f.write(materialist.replace(", ", ", \n"))
@@ -98,7 +98,7 @@ class Block(commands.Cog):
             await ctx.send(
                 embed=embed, 
                 files=[
-                    nextcord.File("cache/blocks.png", filename="f.png"),
+                    nextcord.File("cache/gluedcandy.png", filename="f.png"),
                     nextcord.File("cache/materialist.txt", filename="material_list.txt")
                 ]
             )
@@ -112,7 +112,7 @@ class Block(commands.Cog):
         generaterecipe(block)
         embed = nextcord.Embed()
         embed.title = f"{block}'s Recipe"
-        embed.description = f"{block} has a Combiner Recipe."
+        embed.description = f"{block} has a Recipe."
         embed.set_image(url="attachment://f.gif")
         await ctx.send(embed=embed, file=nextcord.File(f"cache/recipe-{block}.gif", filename="f.gif"))  
         
