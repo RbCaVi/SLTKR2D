@@ -14,7 +14,6 @@ class Admin(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.has_permissions(administrator=True)
     @CogCommand("viewcog")
     async def viewcog(self,ctx):
         embed = nextcord.Embed()

@@ -1,7 +1,6 @@
 ## viewcog
 viewcog.aliases = [cg, cgv, cog, cogs]
-viewcog.desc = Hides data. \
-Admin-Only Command.
+viewcog.desc = Hides data.
 
 viewcog.error = Unable to reach all cogs.
 viewcog.syntax = !viewcog
