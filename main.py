@@ -7,6 +7,7 @@ from nextcord.ext import commands, tasks
 from pyfunc.lang import cfg, evl, keywords, phraser, phrasermodule, getkws
 from pyfunc.gettoken import gettoken
 from pyfunc.commanddec import MainCommand
+import random
 
 botinit()
 # Intents
@@ -14,7 +15,8 @@ intents = nextcord.Intents.default()
 intents.members = True
 intents.message_content = True
 # Bot Instance
-bot = commands.Bot(command_prefix=cfg("PREFIX"), intents=intents, help_command=None)
+prefixes = [*set(['!','~','?','--','//','BOT!!!',cfg("PREFIX")])]
+bot = commands.Bot(command_prefix=random.choice(prefixes), intents=intents, help_command=None)
 # TimeOn must be a datetime, or else error will be raised when !help
 TimeOn: datetime.datetime = datetime.datetime.now() 
 # initialize some things
