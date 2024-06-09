@@ -72,8 +72,8 @@ def substitutelocale(locale:str) -> str:
     # mods is optional and is a string containing one or more of ^, s, or d
     lastob = 0 # the index to look for the next opening bracket at
     while '{' in locale[lastob:]:
-        i_ob = locale.index('{',start=lastob)
-        i_cb = locale.find('}', start=i_ob)
+        i_ob = locale.index('{',lastob)
+        i_cb = locale.find('}', i_ob)
         if i_cb==-1: # there is no closing bracket
             break
         before=locale[:i_ob]
