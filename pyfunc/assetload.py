@@ -65,20 +65,20 @@ def geticoncoords() -> None:
         x,y=xy.split(',')
         blockinfos[icon]["iconcoord"] = (int(x), int(y))
 
-def substitutelocale(locale:str) -> str:
+def substitutelocale(localestr:str) -> str:
     # substitute locale entries into others
     # used in descriptions
     # a reference is {category name|mods}
     # mods is optional and is a string containing one or more of ^, s, or d
     lastob = 0 # the index to look for the next opening bracket at
-    while '{' in locale[lastob:]:
-        i_ob = locale.index('{',lastob)
-        i_cb = locale.find('}', i_ob)
+    while '{' in localestr[lastob:]:
+        i_ob = localestr.index('{',lastob)
+        i_cb = localestr.find('}', i_ob)
         if i_cb==-1: # there is no closing bracket
             break
-        before=locale[:i_ob]
-        middle=locale[i_ob+1:i_cb]
-        after=locale[i_cb+1:]
+        before=localestr[:i_ob]
+        middle=localestr[i_ob+1:i_cb]
+        after=localestr[i_cb+1:]
         lastob=i_ob+1
         if '|' in middle:
             middle,modifier=middle.split('|',maxsplit=1)
@@ -89,8 +89,8 @@ def substitutelocale(locale:str) -> str:
             localized=locale[key]
             for mod in modifier:
                 localized=modifiers[mod](localized)
-            locale=before+localized+after
-    return locale
+            localestr=before+localized+after
+    return localestr
 
 def getlocale() -> None:
     # get locale entries from config.local_game.language_path
