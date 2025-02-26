@@ -48,12 +48,30 @@ Assoc:typing.TypeAlias = typing.Literal['LEFT'] | typing.Literal['RIGHT']
 LEFT:Assoc  = 'LEFT'  # Associativity: left
 RIGHT:Assoc = 'RIGHT' # Associativity: right
 
-Bop = typing.NewType('Bop',str)
+Bop:typing.TypeAlias = (
+  typing.Literal['//'] |
+  typing.Literal['div'] |
+  typing.Literal['%'] |
+  typing.Literal['mod'] |
+  typing.Literal['**'] |
+  typing.Literal['^'] |
+  typing.Literal['/'] |
+  typing.Literal['*'] |
+  typing.Literal['+'] |
+  typing.Literal['-']
+)
 BopToken:typing.TypeAlias = tuple[typing.Literal["BOP"],Bop]
-Uop = typing.NewType('Uop',str)
+
+Uop = (
+  typing.Literal['-']
+)
 UopToken:typing.TypeAlias = tuple[typing.Literal["UOP"],Uop]
-Pop = typing.NewType('Pop',str)
+
+Pop = (
+  typing.Literal['!']
+)
 PopToken:typing.TypeAlias = tuple[typing.Literal["POP"],Pop]
+
 Sym = typing.NewType('Sym',str)
 SymToken:typing.TypeAlias = tuple[typing.Literal["SYM"],Sym]
 NumType:typing.TypeAlias = int | float | complex
@@ -74,20 +92,20 @@ AnyToken:typing.TypeAlias = ValueToken | BopToken | UopToken | PopToken | LParTo
 
 RealToken:typing.TypeAlias = SymToken | NumToken | BopToken | UopToken | PopToken | LParToken | CallToken | tuple[typing.Literal["RPAR"]]
 
-prefixOperators:list[Uop] = [Uop('-')]
-postfixOperators:list[Pop] = [Pop('!')]
+prefixOperators:list[Uop] = ['-']
+postfixOperators:list[Pop] = ['!']
 
 binaryOperators:dict[Bop,tuple[int,Assoc]] = {
-  Bop('//') : (5, LEFT ),
-  Bop('div'): (5, LEFT ),
-  Bop('%')  : (4, LEFT ),
-  Bop('mod'): (4, LEFT ),
-  Bop('**') : (3, RIGHT),
-  Bop('^')  : (3, RIGHT),
-  Bop('/')  : (2, LEFT ),
-  Bop('*')  : (2, LEFT ),
-  Bop('+')  : (1, LEFT ),
-  Bop('-')  : (1, LEFT )
+  '//' : (5, LEFT ),
+  'div': (5, LEFT ),
+  '%'  : (4, LEFT ),
+  'mod': (4, LEFT ),
+  '**' : (3, RIGHT),
+  '^'  : (3, RIGHT),
+  '/'  : (2, LEFT ),
+  '*'  : (2, LEFT ),
+  '+'  : (1, LEFT ),
+  '-'  : (1, LEFT )
 }
 
 symbols:dict[Sym,NumType] = {
