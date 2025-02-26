@@ -79,7 +79,7 @@ NumToken:typing.TypeAlias = tuple[typing.Literal["NUM"],NumType]
 ExprToken:typing.TypeAlias = (
   tuple[typing.Literal["EXPR"],Uop | Pop,'ValueToken'] | 
   tuple[typing.Literal["EXPR"],Bop,'ValueToken','ValueToken'] |
-  tuple[typing.Literal["EXPR"],typing.Literal['('],'ValueToken','ValueToken']
+  tuple[typing.Literal["EXPR"],typing.Literal['('],str,'ValueToken']
 )
 ValueToken:typing.TypeAlias = SymToken | NumToken | ExprToken
 
@@ -168,7 +168,7 @@ def applyPostfixOperation(operation:PopToken, operand:ValueToken) -> ValueToken:
 def applyFunction(functionName:str,operand:ValueToken) -> ValueToken:
   l.debug(f"Applying Function {functionName} to {operand}")
   if operand[0] != NUM:
-    return typing.cast(ValueToken,(EXPR,'(',functionName,operand)) # for reasons
+    return (EXPR,'(',functionName,operand)
   operandValue = operand[1]
   match functionName:
     case 'log'            : return (NUM, cmath.log(operandValue, 10))
@@ -183,7 +183,7 @@ def applyFunction(functionName:str,operand:ValueToken) -> ValueToken:
     case 'cos'            : return (NUM, cmath.cos(operandValue))
     case 'tan'            : return (NUM, cmath.tan(operandValue))
     case 'rdm'            : return (NUM, random.random()*operandValue)
-    case _                : return typing.cast(ValueToken,(EXPR,'(',functionName,operand))
+    case _                : return (EXPR,'(',functionName,operand)
 # here starts RbCaVi's code
 # please know what you are doing, sear.
 
@@ -361,7 +361,6 @@ def stringifyexpr(expression:ValueToken) -> str:
   assert expression[0] == EXPR
   if expression[1]=='(':
     return f'{expression[2]}({stringifyexpr(expression[3])})'
-  assert expression[1] != '('
   if len(expression) == 3: # (EXPR,Uop/Pop,arg)
     if len(expression[2]) == 4:
       return f'{expression[1]}({stringifyexpr(expression[2])})' # -(a+b)
