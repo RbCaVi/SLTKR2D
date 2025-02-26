@@ -410,7 +410,7 @@ def drawblocktexture(image:ImageBit,weld:WeldSides) -> Image:
 def defaultblock(data:BlockData) -> Image:
 	welded=data['weld']
 	rotate=data['rotate']
-	image=getblocktexture(typing.cast(BlockDataLoose,data))
+	image=getblocktexture({**data})
 	welded=rotatewelded(welded,rotate)
 	im=drawblocktexture(image,welded)
 	im=rotateblockib(im,rotate)

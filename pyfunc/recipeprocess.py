@@ -303,7 +303,7 @@ tagdata = tagschema.validate(data['tag'])
 for tag in tagdata:
     assert tag['name'] not in tags
     assert isinstance(tag['blocks'],list)
-    tags[tag['name']]=typing.cast(Tag, tag['blocks'])
+    tags[tag['name']]=typing.cast(Tag, tag['blocks']) # assume it's the right format (list of strings)
 
 del tag
 del tagdata

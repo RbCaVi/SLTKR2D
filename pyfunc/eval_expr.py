@@ -216,7 +216,7 @@ def getANumber(expression:str) -> tuple[int | float | None, str]:
 def getASymbol(expression:str) -> tuple[Sym | None, str]:
   # Get a actual symbol, not a variable or number
   if m := re.match('[a-zA-Z][a-zA-Z0-9]*',expression):
-    return typing.cast(Sym,expression[:m.end()]),expression[m.end():]
+    return Sym(expression[:m.end()]),expression[m.end():]
   for symbol in symbols:
     if expression[0]==symbol:
       return symbol,expression[1:]
@@ -367,7 +367,6 @@ def stringifyexpr(expression:ValueToken) -> str:
     return f'{expression[1]}{stringifyexpr(expression[2])}' # a
   if len(expression) == 4:
     _,op,left,right = expression
-    op = typing.cast(Bop,op) # mypy issue (probably a bug)
     p1 = getPrecedenceOfOperator((BOP,op))
     def getPrecedence(e:ValueToken) -> float: # i would use int | typing.Literal[math.inf] but that's not allowed
       if e[0] == EXPR:
