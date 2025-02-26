@@ -273,7 +273,8 @@ with open(pthblocktexture) as f:
 	data=smp.getsmpvalue(f.read())
 assert isinstance(data,dict)
 for name,texture in data.items():
-	assert isinstance(texture,dict) # and that it is str:str
+	assert isinstance(texture,dict)
+	# and assume that it is str:str
 	blockpaths[name] = typing.cast(dict[str,str],texture)
 	if 'rimlight' in texture:
 		rimlight = PIL.Image.open(os.path.join(cfgstr("localGame.texture.texturePathFolder"),blockpaths[name]['rimlight'])).convert('RGB')
